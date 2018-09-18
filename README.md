@@ -1,3 +1,5 @@
+# Changed for public service
+
 ## 어떻게 실행 | How to run
 
 `manage.py`가 있는 데로 가서 `bash run.sh`를 실행. 지금은 그 파일이 **_base** 아래에 있고 이건 장고 프로젝트의 이름. 앱의 이름이 **Artia**입니다. 만약 virtualenvwrapper를 사용한다면, 쉽게 파이썬 가상 환경을 이름을 명시함으로서 만들 수 있어요. 이렇게요. `bash run.sh install artia-web-tool` 이름을 명시하지 않는다면, 파이썬 명령어는 현재 파이썬 환경에서 실행돼요.
