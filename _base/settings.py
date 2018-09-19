@@ -37,6 +37,8 @@ LOGOUT_REDIRECT_URL = 'artia:home'
 
 INSTALLED_APPS = [
     'artia.apps.ArtiaConfig',
+    'webapp.apps.WebappConfig',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,8 +84,8 @@ WSGI_APPLICATION = '_base.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'artia',
     }
 }
 

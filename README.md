@@ -1,4 +1,4 @@
-# Changed for public service
+Changed for public service ***webapp***, artia app is deprecated.
 
 ## 어떻게 실행 | How to run
 
