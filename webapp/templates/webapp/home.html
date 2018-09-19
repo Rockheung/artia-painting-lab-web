@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>psd.js image example</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'webapp/css/style.css' %}">
+    <script type="text/javascript" src="{% static 'webapp/js/psd.min.js' %}"></script>
+
+  </head>
+  <body>
+    <div id="dropzone">
+      <p>Drop here</p>
+    </div>
+
+    <div id="image"></div>
+    <pre id="data"></pre>
+
+    <script type="text/javascript">
+      (function () {
+        var PSD = require('psd');
+
+        document.getElementById('dropzone').addEventListener('dragover', onDragOver, true);
+        document.getElementById('dropzone').addEventListener('drop', onDrop, true);
+
+        function onDragOver(e) {
+          e.stopPropagation();
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'copy';
+        }
+
+        function onDrop(e) {
+          e.stopPropagation();
+          e.preventDefault();
+
+          PSD.fromEvent(e).then(function (psd) {
+            var data = JSON.stringify(psd.tree().export(), undefined, 2);
+            document.getElementById('data').innerHTML = data;
+            document.getElementById('image').appendChild(psd.image.toPng());
+          });
+        }
+      }());
+    </script>
+  </body>
+</html>
+

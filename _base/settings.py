@@ -27,24 +27,20 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-MEDIA_URL = '/upload/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
-
-LOGIN_REDIRECT_URL = 'artia:home'
-LOGOUT_REDIRECT_URL = 'artia:home'
 
 # Application definition
 
 INSTALLED_APPS = [
-    'artia.apps.ArtiaConfig',
-    'webapp.apps.WebappConfig',
-    'rest_framework',
+    #'artia.apps.ArtiaConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'webapp.apps.WebappConfig',
+    '_rest_api.apps.RestApiConfig',
 ]
 
 MIDDLEWARE = [
@@ -112,9 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -128,3 +124,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/upload/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+
+LOGIN_REDIRECT_URL = 'webapp:home'
+LOGOUT_REDIRECT_URL = 'webapp:home'
