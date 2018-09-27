@@ -21,22 +21,29 @@ class Episode(models.Model):
     work = models.ForeignKey(Work,
                              on_delete=models.SET_NULL,
                              null=True)
-    title = CharField(max_length=255)
+    title = models.CharField(max_length=255)
 
     def __str__(self):
         return self.title
 
+class PSDFile(models.Model):
+
+    w = models.IntegerField()
+    h = models.IntegerField()
 
 class Cut(models.Model):
     index = models.PositiveIntegerField(primary_key=True)
     episode = models.ForeignKey(Episode,
                                 on_delete=models.CASCADE)
+    # This field is for order
+    pre_cut = models.OneToOneField('self',
+                                   related_name='previous_cut',
+                                   null=True,
+                                   on_delete=None)
     x = models.IntegerField()
     y = models.IntegerField()
-    width = models.IntegerField()
-    height = models.IntegerField()
-    x_canvas = model.IntegerField()
-    y_canvas = model.IntegerField()
+    w = models.IntegerField()
+    h = models.IntegerField()
 
     def __str__(self):
         return self.index
@@ -64,6 +71,9 @@ class Instance(models.Model):
 
 
 class KeyPoint(models.Model):
+    KEYPOINT = (
+        ('N','nose'),
+        )
     index = models.PositiveIntegerField(primary_key=True)
     # nose, left_eye, right_eye, left_ear, right_ear, left_shoulder, right_shoulder,
     # left_elbow, right_elbow, left_wrist, right_wrist, left_hip, right_hip, left_knee,
