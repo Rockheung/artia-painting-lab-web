@@ -8,8 +8,8 @@ class PSDFile(models.Model):
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE)
     datafile = models.FileField()
-    w = models.IntegerField()
-    h = models.IntegerField()
+    w = models.IntegerField(null=True)
+    h = models.IntegerField(null=True)
 
     def __str__(self):
         return self.datafile.name

@@ -8,21 +8,8 @@ sendfiles.addEventListener("click", sendFileAjax);
 
 
 var formData = new FormData();
+
 var csrftoken = Cookies.get('csrftoken');
-
-
-function csrfSafeMethod(method) {
-  // these HTTP methods do not require CSRF protection
-  return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-}
-
-$.ajaxSetup({
-  beforeSend: function(xhr, settings) {
-    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-      xhr.setRequestHeader("X-CSRFToken", csrftoken);
-    }
-  }
-});
 
 function onDragOver(evt) {
   console.log('File(s) is being dragged over');
@@ -42,7 +29,7 @@ function onDrop(evt) {
       // If dropped items aren't files, reject them
       if (evt.dataTransfer.items[i].kind === 'file') {
         var file = evt.dataTransfer.items[i].getAsFile();
-        formData.append('datafile', file);
+        formData.append('file', file);
         console.log('... file[' + i + '].name = ' + file.name);
       }
     }
@@ -50,7 +37,7 @@ function onDrop(evt) {
     // Use DataTransfer interface to access the file(s)
     for (var i = 0; i < evt.dataTransfer.files.length; i++) {
       console.log('... file[' + i + '].name = ' + evt.dataTransfer.files[i].name);
-      formData.append('datafile', evt.dataTransfer.files[i]);
+      formData.append('file', evt.dataTransfer.files[i]);
 
     }
   }
@@ -69,6 +56,18 @@ function onDrop(evt) {
     console.log(psd.tree().export());
   });
 }
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
 
 function sendFileAjax() {
 }
