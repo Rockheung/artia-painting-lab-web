@@ -5,7 +5,7 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from rest_framework import routers
 
-from _rest_api import views
+from webapp import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)

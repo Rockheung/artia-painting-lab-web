@@ -31,16 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    #'artia.apps.ArtiaConfig',
+    'webapp.apps.WebappConfig',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'webapp.apps.WebappConfig',
-    '_rest_api.apps.RestApiConfig',
 ]
 
 MIDDLEWARE = [
